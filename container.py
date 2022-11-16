@@ -1,4 +1,4 @@
-from matrix import matrix_read_from, matrix_write_to
+from matrix import matrix_read_from, matrix_write_to, compare
 
 
 class Node:
@@ -44,3 +44,18 @@ def container_write_to(container, stream):
         while n is not None:
             matrix_write_to(n.data, stream)
             n = n.next
+
+
+def container_sort(container):
+    if container.start_node is None:
+        print('Empty')
+    else:
+        n1 = container.start_node
+        n2 = container.start_node
+        while n1 is not None:
+            while n2 is not None:
+                if compare(n1.data, n2.data):
+                    n1.data, n2.data = n2.data, n1.data
+                n2 = n2.next
+            n1 = n1.next
+            n2 = container.start_node

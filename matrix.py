@@ -72,3 +72,17 @@ def diagonal_read_from(matrix, stream):
 
 def diagonal_write_to(matrix, stream):
     stream.write(f'\t\t{matrix.data}\n')
+
+
+def compare(first, second):
+    return matrix_sum(first) < matrix_sum(second)
+
+
+def matrix_sum(matrix):
+    s = 0
+    for item in matrix.obj.data:
+        if isinstance(item, int):
+            s += item
+        else:
+            s += sum(item)
+    return s

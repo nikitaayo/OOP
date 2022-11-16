@@ -1,4 +1,8 @@
-Container has 2 elements
+Container has 3 elements
+	This is two-dimensional array
+		[1, 1]
+		[1, 1]
+	Size: 2
 	This is two-dimensional array
 		[1, 2]
 		[3, 4]
