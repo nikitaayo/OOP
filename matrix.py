@@ -12,6 +12,7 @@ class Matrix:
 class MatrixType(Enum):
     two_dimensional_array = 1
     diagonal = 2
+    triangle = 3
 
 
 class TwoDimArray:
@@ -22,6 +23,11 @@ class TwoDimArray:
 class Diagonal:
     def __init__(self):
         self.data = None
+
+
+class Triangle:
+    def __init__(self):
+        self.data = []
 
 
 def matrix_read_from(stream, line):
@@ -38,6 +44,10 @@ def matrix_read_from(stream, line):
         matrix.key = MatrixType.diagonal
         matrix.obj = Diagonal()
         diagonal_read_from(matrix.obj, stream)
+    elif k == 3:
+        matrix.key = MatrixType.triangle
+        matrix.obj = Triangle()
+        triangle_read_from(matrix.obj, stream)
     else:
         return 0
 
@@ -51,6 +61,9 @@ def matrix_write_to(matrix, stream):
     elif matrix.key == MatrixType.diagonal:
         stream.write(f'\tThis is diagonal matrix\n')
         diagonal_write_to(matrix.obj, stream)
+    elif matrix.key == MatrixType.triangle:
+        stream.write('\tThis is triangle matrix\n')
+        triangle_write_to(matrix.obj, stream)
     else:
         stream.write('Error type\n')
 
@@ -71,4 +84,11 @@ def diagonal_read_from(matrix, stream):
     matrix.data = list(map(lambda x: int(x), stream.readline().rstrip('\n').split()))
 
 def diagonal_write_to(matrix, stream):
+    stream.write(f'\t\t{matrix.data}\n')
+
+
+def triangle_read_from(matrix, stream):
+    matrix.data = list(map(lambda x: int(x), stream.readline().rstrip('\n').split()))
+
+def triangle_write_to(matrix, stream):
     stream.write(f'\t\t{matrix.data}\n')
