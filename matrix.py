@@ -69,7 +69,7 @@ def matrix_write_to(matrix, stream):
     else:
         stream.write('Error type\n')
 
-    stream.write(f'\tSum: {matrix_sum(matrix.obj)}\n')
+    stream.write(f'\tSum: {matrix_sum(matrix)}\n')
     stream.write(f'\tSize: {matrix.size}\n')
     stream.write(f'\t\tOutput type: {matrix.out_type}\n')
 
@@ -132,9 +132,13 @@ def triangle_write_to(matrix, stream):
     stream.write(f'\t\t{matrix.data}\n')
 
 
+def compare(first, second):
+    return matrix_sum(first) < matrix_sum(second)
+
+
 def matrix_sum(matrix):
     s = 0
-    for item in matrix.data:
+    for item in matrix.obj.data:
         if isinstance(item, int):
             s += item
         else:
