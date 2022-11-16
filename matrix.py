@@ -67,6 +67,7 @@ def matrix_write_to(matrix, stream):
     else:
         stream.write('Error type\n')
 
+    stream.write(f'\tSum: {matrix_sum(matrix.obj)}\n')
     stream.write(f'\tSize: {matrix.size}\n')
 
 
@@ -92,3 +93,13 @@ def triangle_read_from(matrix, stream):
 
 def triangle_write_to(matrix, stream):
     stream.write(f'\t\t{matrix.data}\n')
+
+
+def matrix_sum(matrix):
+    s = 0
+    for item in matrix.data:
+        if isinstance(item, int):
+            s += item
+        else:
+            s += sum(item)
+    return s
